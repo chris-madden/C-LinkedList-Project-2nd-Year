@@ -15,8 +15,8 @@ void main()
 
 	//Struct pointer of type employee
 	//Initially there aren't any nodes
-	//Pointer variable points no where
-	headPtr = NULL;
+	//Points to start of the listj
+	struct employee *headPtr = NULL;
 
 	
 	//Will keep giving you menu options until 0 is entered
@@ -33,12 +33,12 @@ void main()
 
 			case 1:
 				//printf("Insert Add employee function ");
-				addEmployee();
+				addEmployee(&headPtr);//Pass in the address of headPtr
 				break;
 
 			case 2:
 				//printf("Insert Display employee details function ");
-				displayEmployees();
+				displayEmployees(headPtr);
 				break;
 
 			case 3:
@@ -95,10 +95,10 @@ void menu()
 }//End menu function
 
 //Passed in address on headPtr from MAIN
-void addEmployee()
+/*void addEmployee()
 {
 
-	//Creating a new node
+	//Creating a new node        
 	struct employee *newNodePtr;
 
 	//Assign memory to newPtr
@@ -106,29 +106,32 @@ void addEmployee()
 	//otherwise it would return a void pointer
 	newNodePtr = (struct employee*)malloc(sizeof(struct employee));
 
-	//Prompts user to enter an ID number
-	printf("\n\nEnter an ID number\n");
-	scanf("%d", &newNodePtr->id);
+	//Check that newNodePtr is not null
+	if (newNodePtr != NULL)
+	{
+		//Prompts user to enter an ID number
+		printf("\n\nEnter an ID number\n");
+		scanf("%d", &newNodePtr->id);
 
-	//Set the nextPtr to NULL so it's not pointing to anything
-	//This then makes the current node the last node
-	newNodePtr->nextPtr = NULL;
+		//Set the nextPtr to NULL so it's not pointing to anything
+		//This then makes the current node the last node
+		newNodePtr->nextPtr = NULL;
+	}
 
-	//Here you can put in an if statement checking if headPtr is = NULL
+	//Here you can put in an if statement checking if headPtr is = NULL.l
 	if (headPtr != NULL)
 	{
-
 		//Build link to node which points to NULL
+		//***Passes address of headPtr***
 		newNodePtr->nextPtr = headPtr;
-		
 	}
 	
 	//This puts newNodePtr at the start of the linked list
 	headPtr = newNodePtr;
-	
+
 
 	//newPtr->nextPtr = *startPtr;
-
+*/
 	/*
 	//User will enter a number to stop being asked to enter empoyee details
 	int userContinue = 1;
@@ -220,10 +223,11 @@ void addEmployee()
 
 		}
 		
-	}*/
+	}
 	
 }//End addEmployee function
-
+*/
+/*
 void displayEmployees()
 {
 
@@ -243,3 +247,188 @@ void displayEmployees()
 
 
 }//End displayEmployees function
+*/
+
+
+
+
+
+
+
+
+/*
+//Pass in memory address of NULL node created in main
+void addEmployee(struct employee **sPtr)
+{
+	
+	//Creating a new node        
+	struct employee *newNodePtr, *previousPtr, *currentPtr;
+
+	//Assign memory to newPtr
+	//Typecasting it means it points to the beginning address of the node
+	//otherwise it would return a void pointer
+	newNodePtr = (struct employee*)malloc(sizeof(struct employee));
+
+	//Check that newNodePtr is not null
+	if (newNodePtr != NULL)
+	{
+		//Prompts user to enter an ID number
+		printf("\n\nEnter an ID number\n");
+		scanf("%d", &newNodePtr->id);
+
+		//Set the nextPtr to NULL so it's not pointing to anything
+		//This then makes the current node the last node
+		newNodePtr->nextPtr = NULL;
+
+
+		previousPtr = NULL;
+		currentPtr = *sPtr;
+
+		while (currentPtr == NULL && newNodePtr->id > currentPtr->id)
+		{
+
+			previousPtr = currentPtr;
+
+			currentPtr = currentPtr->nextPtr;
+
+		}//End while 
+
+		if (previousPtr == NULL)
+		{
+
+			newNodePtr->nextPtr = *sPtr;
+
+			*sPtr = newNodePtr;
+
+		}
+		else
+		{
+			previousPtr->nextPtr = newNodePtr;
+
+			newNodePtr->nextPtr = currentPtr;
+		}
+
+	}//end if
+	else
+	{
+		printf("No memory available.\n");
+	}
+
+}//End addEmployee
+void displayEmployees(struct employee *currentPtr)
+{
+
+	if (currentPtr == NULL)
+	{
+
+		printf("List is empty");
+
+	}
+	else
+	{
+
+		printf("This is list\n");
+
+
+
+		while (currentPtr != NULL)
+		{
+
+			printf("%d", currentPtr->id);
+
+			currentPtr = currentPtr->nextPtr;
+
+		}
+
+		printf("NULL\n\n");
+
+	}//End else
+}
+*/
+
+//Create pointer which points to address of headPtr
+void addEmployee(struct employee **headPtr)
+{
+
+	struct employee *newNodePtr;//Pointer to a new node
+
+	struct employee *previousPtr;//Points to previous node in the list
+
+	struct employee *currentPtr;//Points to current node in the list
+
+	newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
+
+	if (newNodePtr != NULL)//Once there is space available
+	{
+
+		printf("Enter your id number\n");
+		scanf("%d", &newNodePtr->id);
+
+		newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
+
+		previousPtr = NULL;//previousPtr doesn't point to anything
+
+		currentPtr = *headPtr;//assign headPtr to currentPtr
+
+
+		//First time around currentPtr will be NULL
+		while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
+		{
+
+			previousPtr = currentPtr;
+
+			currentPtr = currentPtr->nextPtr;
+
+		}//End while
+
+		//If there is no linked list already
+		if (previousPtr == NULL)
+		{
+
+			newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
+
+			*headPtr = newNodePtr;//headPtr points to newNodePtr
+
+		}//End nested if
+		else//Put newNodePtr in correct position
+		{
+			previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
+
+			newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
+		}
+
+	}//End if
+	else
+	{
+		printf("Nothing was added");
+	}
+
+}//End addEmloyees
+
+void displayEmployees(struct employee *currentPtr)
+{
+
+	if (currentPtr == NULL)
+	{
+
+		printf("List is empty");
+
+	}
+	else
+	{
+
+		printf("This is list\n");
+
+		while (currentPtr != NULL)
+		{
+
+			printf("%d ", currentPtr->id);
+
+			currentPtr = currentPtr->nextPtr;
+
+		}
+
+		printf("NULL\n\n");
+
+	}//End else
+}

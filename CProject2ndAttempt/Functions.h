@@ -40,16 +40,18 @@ struct employee
 };
 
 //Global
-struct employee *headPtr;
+//struct employee *headPtr;
+
+//istruct employee *employeePtr;
 
 void menu();
 
 //Global variable for user choice
 int userChoice;
 
-void addEmployee();
+void addEmployee(struct employee **headPtr);
 
-void displayEmployees();
+void displayEmployees(struct employee *currentPtr);
 
 
 
