@@ -47,11 +47,14 @@ struct employee
 void menu();
 
 //Global variable for user choice
-int userChoice;
+int userChoice, deleteNumber;
 
+//Prototypes
 void addEmployee(struct employee **headPtr);
 
 void displayEmployees(struct employee *currentPtr);
+
+void deleteEmployee(struct employee **headPtr, int deleteNumber);
 
 
 
