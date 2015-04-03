@@ -17,7 +17,7 @@ void main()
 	//Initially there aren't any nodes
 	//Points to start of the listj
 	struct employee *headPtr = NULL;
-
+	int tempNumber, validationNum;
 	
 	//Will keep giving you menu options until 0 is entered
 	do
@@ -33,7 +33,19 @@ void main()
 
 			case 1:
 				//printf("Insert Add employee function ");
-				addEmployee(&headPtr);//Pass in the address of headPtr
+				printf("Enter your id number\n");
+				scanf("%d", &tempNumber);
+
+				//Will check if number is unique or not
+				validationNum = uniqueIDSearch(headPtr, tempNumber);
+
+				if (validationNum != NULL)
+				{
+
+					addEmployee(&headPtr, validationNum);//Pass in the address of headPtr
+
+				}
+				
 				break;
 
 			case 2:
@@ -110,7 +122,8 @@ void menu()
 
 
 //Create pointer which points to address of headPtr
-void addEmployee(struct employee **headPtr)
+//PASS IN TEMP_NUMBER
+void addEmployee(struct employee **headPtr, int validationNum)
 {
 
 	struct employee *newNodePtr;//Pointer to a new node
@@ -121,50 +134,48 @@ void addEmployee(struct employee **headPtr)
 
 	newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
 
-	if (newNodePtr != NULL)//Once there is space available
-	{
-
-		printf("Enter your id number\n");
-		scanf("%d", &newNodePtr->id);
-
-		newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
-
-		previousPtr = NULL;//previousPtr doesn't point to anything
-
-		currentPtr = *headPtr;//currentPtr ponits to begining of list
-
-
-		//First time around currentPtr will be NULL
-		while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
+		if (newNodePtr != NULL)//Once there is space available
 		{
+			
+			newNodePtr->id = validationNum;//Assign unique user entered number to id of newNodePtr
 
-			previousPtr = currentPtr;
+			newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
 
-			currentPtr = currentPtr->nextPtr;
+			previousPtr = NULL;//previousPtr doesn't point to anything
 
-		}//End while
+			currentPtr = *headPtr;//currentPtr ponits to begining of list
 
-		//If there is no linked list already
-		if (previousPtr == NULL)
+			//First time around currentPtr will be NULL
+			while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
+			{
+
+				previousPtr = currentPtr;
+
+				currentPtr = currentPtr->nextPtr;
+
+			}//End while
+
+			//If there is no linked list already
+			if (previousPtr == NULL)
+			{
+
+				newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
+
+				*headPtr = newNodePtr;//headPtr points to newNodePtr
+
+			}//End nested if
+			else//Put newNodePtr in correct position
+			{
+				previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
+
+				newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
+			}
+
+		}//End if
+		else
 		{
-
-			newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
-
-			*headPtr = newNodePtr;//headPtr points to newNodePtr
-
-		}//End nested if
-		else//Put newNodePtr in correct position
-		{
-			previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
-
-			newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
+			printf("Nothing was added");
 		}
-
-	}//End if
-	else
-	{
-		printf("Nothing was added");
-	}
 
 }//End addEmloyees
 
@@ -256,3 +267,29 @@ void deleteEmployee(struct employee **headPtr, int deleteNumber)
 	}
 
 }//End deleteEmployee
+
+//Pass in headPtr as it's the start of the list
+int uniqueIDSearch(struct employee *headPtr, int searchNumber)
+{
+	//Loop if headPtr is not null
+	while (headPtr != NULL)
+	{
+		//Compare the user entered number with id's already in list
+		if (searchNumber == headPtr->id)
+		{
+			printf("Sorry ID already taken, please enter a new number\n\n");
+			return NULL;
+
+		}//End if
+
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+	return searchNumber;
+
+}//End uniqueIDSearch
+
+
+
+
