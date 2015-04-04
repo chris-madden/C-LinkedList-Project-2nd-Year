@@ -25,7 +25,7 @@ struct employee
 	//String for department - may change to int later on
 	char department[15];
 
-	//This will need a structure in the future, leaving it as an int for now
+	//Date is held in a struct
 	struct date employeeDate;
 
 	//Double for the money employee makes in year
