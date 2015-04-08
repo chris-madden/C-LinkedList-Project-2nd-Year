@@ -58,5 +58,7 @@ void deleteEmployee(struct employee **headPtr, int deleteNumber);
 
 int uniqueIDSearch(struct employee **headPtr, int searchNumber);
 
+void updateIdSearch(struct employee *headPtr, int searchNumber);
+
 
 

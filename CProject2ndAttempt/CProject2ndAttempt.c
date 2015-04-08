@@ -5,7 +5,9 @@
 
 ------------------------1. When wrong details enterd in addEmployee it still saves in a list and needs to be deleted--------------
 
-------------------------2. Salary needs to be entered and so too does email-------------------------------------------------------
+------------------------2. A lot of validation needed in addEmployee--------------------------------------------------------------
+
+------------------------3. Update Employees section done but no validation on new data entered------------------------------------
 */
 
 #ifdef _MSC_VER
@@ -25,7 +27,7 @@ void main()
 	//Initially there aren't any nodes
 	//Points to start of the listj
 	struct employee *headPtr = NULL;
-	int tempNumber, validationNum, correctUserCoice;
+	int tempNumber, validationNum, correctUserCoice, updateId;
 	
 	//Will keep giving you menu options until 0 is entered
 	do
@@ -77,7 +79,27 @@ void main()
 				break;
 
 			case 3:
-				printf("Insert Update employee function");
+				//printf("Insert Update employee function");
+				printf("Enter ID to you want to update\n");
+				scanf("%d", &updateId);
+
+				if (updateId >= 0 && updateId <= 10000)
+				{
+
+
+					updateIdSearch(headPtr, updateId);
+					//Will check if number is unique or not
+					//validationNum = uniqueIDSearch(headPtr, tempNumber);
+
+				}
+				else
+				{
+
+					//Error Message
+					printf("Incorrect ID start again\n\n");
+					break;
+
+				}//End else
 				break;
 
 			case 4:
@@ -156,6 +178,10 @@ void addEmployee(struct employee **headPtr, int validationNum)
 	struct employee *currentPtr;//Points to current node in the list
 
 	int dayChecker, monthChecker, yearChecker;//Variables for day and month validation
+
+	double salary;
+
+	char email[40];
 
 	newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
 
@@ -347,10 +373,25 @@ void addEmployee(struct employee **headPtr, int validationNum)
 
 			}
 //=============================================================================================================
-			//scanf("%d", &newNodePtr->employeeDate.day);
 
+			printf("Enter salary\n");
+			scanf("%lf", &salary);
 
+			if (salary >= 0 && salary <= 10000000)
+			{
 
+				newNodePtr->annualSalary = salary;
+
+			}
+			else
+			{
+
+				printf("That is invalid for salary must be between 1 and 10000000");
+
+			}
+	
+			printf("Enter email address\n");
+			scanf("%s", newNodePtr->email);
 
 			newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
 
@@ -398,7 +439,7 @@ void displayEmployees(struct employee *currentPtr)
 	if (currentPtr == NULL)
 	{
 
-		printf("List is empty\n\n");
+		printf("There are no employees\n\n");
 
 	}
 	else
@@ -417,6 +458,8 @@ void displayEmployees(struct employee *currentPtr)
 			printf("Day: %d\n", currentPtr->employeeDate.day);
 			printf("Month: %d\n", currentPtr->employeeDate.month);
 			printf("Year: %d\n", currentPtr->employeeDate.year);
+			printf("Annual Salary: %.2lf\n", currentPtr->annualSalary);//Prints to 2 decimal places
+			printf("Email: %s\n", currentPtr->email);
 
 			printf("\n\n");
 
@@ -537,6 +580,75 @@ int date()
 	return NULL;
 
 }//End date function
+
+//Testing
+void updateIdSearch(struct employee *headPtr, int searchNumber)
+{
+
+	int choice = 0;
+
+	//Loop if headPtr is not null
+	while (headPtr != NULL)
+	{
+		//Compare the user entered number with id's already in list
+		if (searchNumber == headPtr->id)
+		{
+
+
+			printf("What would you like to update\n\n");
+			printf("1.Address\n2.Department\n3.Salary\n");
+
+			scanf("%d", &choice);
+
+			if (choice >= 1 && choice <= 3)
+			{ 
+				
+			
+				if (choice == 1)
+				{
+
+					printf("Enter new address\n");
+					scanf("%s", headPtr->address);
+
+				}
+				else if (choice == 2)
+				{
+
+					printf("Enter new Department\n");
+					scanf("%s", headPtr->department);
+
+				}
+				else if (choice == 3)
+				{
+
+					printf("Enter new Salary\n");
+					scanf("%lf", &headPtr->annualSalary);
+
+				}//End else if  
+
+			}//End nested if
+			else
+			{
+
+				printf("Invalid option\n\n");
+
+			}
+
+		}//End if
+		else
+		{
+
+			printf("ID isn't in database\n\n");
+
+		}//End else
+		
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+
+
+}//End updateIdSearch
 
 
 
