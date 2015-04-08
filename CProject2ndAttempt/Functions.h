@@ -60,5 +60,7 @@ int uniqueIDSearch(struct employee **headPtr, int searchNumber);
 
 void updateIdSearch(struct employee *headPtr, int searchNumber);
 
+void searchDepartment(struct employee *headPtr, char departmentName[]);
+
 
 

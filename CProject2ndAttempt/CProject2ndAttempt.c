@@ -8,6 +8,8 @@
 ------------------------2. A lot of validation needed in addEmployee--------------------------------------------------------------
 
 ------------------------3. Update Employees section done but no validation on new data entered------------------------------------
+
+------------------------4. Display all employees function done, is case sensitive at the moment-----------------------------------
 */
 
 #ifdef _MSC_VER
@@ -28,6 +30,7 @@ void main()
 	//Points to start of the listj
 	struct employee *headPtr = NULL;
 	int tempNumber, validationNum, correctUserCoice, updateId;
+	char departmentName[15];
 	
 	//Will keep giving you menu options until 0 is entered
 	do
@@ -121,7 +124,11 @@ void main()
 				break;
 
 			case 5:
-				printf("Insert Display all employees by department function ");
+				//printf("Insert Display all employees by department function ");
+				printf("Enter department\n");
+				scanf("%s", departmentName);
+
+				searchDepartment(headPtr, departmentName);
 				break;
 
 			case 6:
@@ -651,7 +658,41 @@ void updateIdSearch(struct employee *headPtr, int searchNumber)
 }//End updateIdSearch
 
 
+void searchDepartment(struct employee *headPtr, char departmentName[])
+{
 
+	while (headPtr != NULL)
+	{
+
+		//Compare strings, 0 means true, this is case sensitive
+		if (strcmp(departmentName, headPtr->department) == 0)
+		{
+			//Print out deatils of this employee
+			printf("\nID: %d \n", headPtr->id);
+			printf("Name: %s \n", headPtr->name);
+			printf("Address: %s\n", headPtr->address);
+			printf("Department: %s\n", headPtr->department);
+			printf("Day: %d\n", headPtr->employeeDate.day);
+			printf("Month: %d\n", headPtr->employeeDate.month);
+			printf("Year: %d\n", headPtr->employeeDate.year);
+			printf("Annual Salary: %.2lf\n", headPtr->annualSalary);//Prints to 2 decimal places
+			printf("Email: %s\n", headPtr->email);
+
+			
+
+		}//End if
+		else
+		{
+
+			printf("No department by that name\n\n");
+
+		}
+
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+}//End searchDepartment
 
 
 
