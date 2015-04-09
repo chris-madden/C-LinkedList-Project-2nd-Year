@@ -10,6 +10,8 @@
 ------------------------3. Update Employees section done but no validation on new data entered------------------------------------
 
 ------------------------4. Display all employees function done, is case sensitive at the moment-----------------------------------
+
+------------------------5. Employee report is finished, need to write out to files though-----------------------------------------
 */
 
 #ifdef _MSC_VER
@@ -132,7 +134,11 @@ void main()
 				break;
 
 			case 6:
-				printf("Insert Display employee report function ");
+				//printf("Insert Display employee report function ");
+				printf("Enter department\n");
+				scanf("%s", departmentName);
+
+				employeeReport(headPtr, departmentName);
 				break;
 
 			default:
@@ -694,5 +700,83 @@ void searchDepartment(struct employee *headPtr, char departmentName[])
 
 }//End searchDepartment
 
+void employeeReport(struct employee *headPtr, char departmentName[])
+{
 
+	int employeeCounter = 0, year;
+	double totalSalary = 0, totalBonus = 0, salary = 0, singleBonus = 0, totalCost = 0;
+
+	while (headPtr != NULL)
+	{
+
+		//Compare strings, 0 means true, this is case sensitive
+		//Searches for department
+		if (strcmp(departmentName, headPtr->department) == 0)
+		{
+			
+			//add up employees, save to new variable 
+			employeeCounter++;
+
+			//Calculate total salary, save to new variable
+			totalSalary += headPtr->annualSalary;
+
+			//Bonuses - take date away from 2015, then calculate bonuses
+			salary = headPtr->annualSalary;
+
+			//Get year of employment
+			year = headPtr->employeeDate.year;
+
+			//calculate bonus
+			singleBonus = bonusCalculater(year, salary);
+			
+			//Add up all bonuses
+			totalBonus += singleBonus;
+
+		}//End if
+		else
+		{
+
+			printf("No department by that name\n\n");
+
+		}
+
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+	//Print results here**************************************************
+	//Header of employee report
+	printf("\n\n\t\tEmployee Report\n\t\t***************\n\n");
+
+	//Print figures for employee report
+	printf("\tNumber of employees: %d\n", employeeCounter);
+	printf("\tTotal salary: %.2lf\n", totalSalary);
+	printf("\tTotal bonus: %.2lf\n", totalBonus);
+	printf("\tTotal cost: %.2lf\n\n", (totalSalary + totalBonus));
+
+}//End employeeReport
+
+double bonusCalculater(int year, double salary)
+{
+
+	//Calculates how many years and employee has been there
+	int numOfYears = 2015 - year;
+
+	//Calculates bonus
+	if (numOfYears > 10)
+	{
+		salary *= .05;
+	}
+	else if (numOfYears >= 5 && numOfYears <= 10)
+	{
+		salary *= .04;
+	}
+	else
+	{
+		salary *= .03;
+	}
+
+	return salary;
+
+}//End bonusCalculater
 

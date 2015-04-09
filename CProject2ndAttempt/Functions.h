@@ -62,5 +62,9 @@ void updateIdSearch(struct employee *headPtr, int searchNumber);
 
 void searchDepartment(struct employee *headPtr, char departmentName[]);
 
+void employeeReport(struct employee *headPtr, char departmentName[]);
+
+double bonusCalculater(int year, double salary);
+
 
 

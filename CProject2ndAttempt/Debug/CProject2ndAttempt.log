@@ -1,21 +1,21 @@
-﻿Build started 08/04/2015 15:49:49.
+﻿Build started 09/04/2015 14:44:16.
      1>Project "C:\Users\User\Desktop\CProject2ndAttempt\CProject2ndAttempt\CProject2ndAttempt.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt CProject2ndAttempt.c
          CProject2ndAttempt.c
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(55): warning C4047: 'function' : 'employee **' differs in levels of indirection from 'employee *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(55): warning C4024: 'uniqueIDSearch' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(68): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(72): warning C4020: 'addEmployee' : too many actual parameters
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(30): warning C4101: 'correctUserCoice' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(177): warning C4029: declared formal parameter list different from definition
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(210): warning C4013: 'date' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(213): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(189): warning C4101: 'email' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(547): warning C4028: formal parameter 1 different from declaration
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(555): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(585): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(666): warning C4013: 'strcmp' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(57): warning C4047: 'function' : 'employee **' differs in levels of indirection from 'employee *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(57): warning C4024: 'uniqueIDSearch' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(70): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(74): warning C4020: 'addEmployee' : too many actual parameters
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(32): warning C4101: 'correctUserCoice' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(183): warning C4029: declared formal parameter list different from definition
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(216): warning C4013: 'date' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(219): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(195): warning C4101: 'email' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(553): warning C4028: formal parameter 1 different from declaration
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(561): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(591): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(672): warning C4013: 'strcmp' undefined; assuming extern returning int
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.lib" /MACHINE:X86 Debug\CProject2ndAttempt.obj
          CProject2ndAttempt.vcxproj -> C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe
@@ -23,4 +23,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.35
+Time Elapsed 00:00:00.83
