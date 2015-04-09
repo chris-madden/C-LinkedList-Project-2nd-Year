@@ -33,7 +33,7 @@ void main()
 	struct employee *headPtr = NULL;
 	int tempNumber, validationNum, correctUserCoice, updateId;
 	char departmentName[15];
-	
+
 	//Will keep giving you menu options until 0 is entered
 	do
 	{
@@ -706,6 +706,21 @@ void employeeReport(struct employee *headPtr, char departmentName[])
 	int employeeCounter = 0, year;
 	double totalSalary = 0, totalBonus = 0, salary = 0, singleBonus = 0, totalCost = 0;
 
+	//Create file pointer
+	FILE *fp;
+
+	//Create and open txt file
+	fp = fopen("employeeRecord.txt", "w");
+
+	//Error message
+	if (fp == NULL)
+	{
+
+		printf("No file found");
+
+	}
+
+
 	while (headPtr != NULL)
 	{
 
@@ -750,9 +765,16 @@ void employeeReport(struct employee *headPtr, char departmentName[])
 
 	//Print figures for employee report
 	printf("\tNumber of employees: %d\n", employeeCounter);
+
+	//Print to file
+	fprintf(fp, "Number of employees: %d", employeeCounter);
+
 	printf("\tTotal salary: %.2lf\n", totalSalary);
 	printf("\tTotal bonus: %.2lf\n", totalBonus);
 	printf("\tTotal cost: %.2lf\n\n", (totalSalary + totalBonus));
+
+	//Close file
+	fclose(fp);
 
 }//End employeeReport
 
