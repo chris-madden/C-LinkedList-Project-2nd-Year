@@ -29,10 +29,12 @@ void main()
 
 	//Struct pointer of type employee
 	//Initially there aren't any nodes
-	//Points to start of the listj
+	//Points to start of the list
 	struct employee *headPtr = NULL;
 	int tempNumber, validationNum, correctUserCoice, updateId;
 	char departmentName[15];
+
+	populateLinkedList(headPtr);
 
 	//Will keep giving you menu options until 0 is entered
 	do
@@ -759,19 +761,23 @@ void employeeReport(struct employee *headPtr, char departmentName[])
 
 	}//End while
 
-	//Print results here**************************************************
+	//Print Results
+
 	//Header of employee report
 	printf("\n\n\t\tEmployee Report\n\t\t***************\n\n");
 
 	//Print figures for employee report
 	printf("\tNumber of employees: %d\n", employeeCounter);
-
-	//Print to file
-	fprintf(fp, "Number of employees: %d", employeeCounter);
-
 	printf("\tTotal salary: %.2lf\n", totalSalary);
 	printf("\tTotal bonus: %.2lf\n", totalBonus);
 	printf("\tTotal cost: %.2lf\n\n", (totalSalary + totalBonus));
+
+	//Print to file
+	fprintf(fp, "Employee Report\n***************\n\n");
+	fprintf(fp, "Number of employees: %d\n", employeeCounter);
+	fprintf(fp, "Total salary: %.2lf\n", totalSalary);
+	fprintf(fp, "Total bonus: %.2lf\n", totalBonus);
+	fprintf(fp, "Total cost: %.2lf\n\n", (totalSalary + totalBonus));
 
 	//Close file
 	fclose(fp);
@@ -802,3 +808,87 @@ double bonusCalculater(int year, double salary)
 
 }//End bonusCalculater
 
+
+void populateLinkedList(struct employee *headPtr)
+{
+
+	//Create file pointer
+	FILE *fp;
+
+	//fprintf(fp, "Employee Database\n***************\n\n");
+
+	struct employee *newNodePtr;//Pointer to a new node
+
+	struct employee *previousPtr;//Points to previous node in the list
+
+	struct employee *currentPtr;//Points to current node in the list
+
+	//Employee ID
+	int id;
+
+	//String that can hold name
+	char name[30];
+
+	//String to accept address
+	char address[50];
+
+	//String for department - may change to int later on
+	char department[15];
+
+	//Date is held in a struct
+	struct date employeeDate;
+
+	//Double for the money employee makes in year
+	double annualSalary;
+
+	//Don't know what email will be in the future so leaving it as a string
+	char email[40];
+
+	//Create and open txt file
+	if ((fp = fopen("Database.txt", "r")) == NULL)
+	{
+
+		printf("File could not be opened\n");
+
+	}
+	else
+	{
+
+		fscanf(fp, "%d%s%s%s%lf%s", &id, name, address, department, &annualSalary, email);
+
+	}
+
+
+	printf("%d %s %s %s %.2lf %s\n\n", id, name, address, department, annualSalary, email);
+
+
+	//Run until it's not end of file
+	while (!feof(fp))
+	{
+		
+		fscanf(fp, "%d%s%s%s%lf%s", &id, name, address, department, &annualSalary, email);
+
+		printf("%d %s %s %s %.2lf %s\n\n", id, name, address, department, annualSalary, email);
+		
+	}//End while
+	
+
+	fclose(fp);
+
+/*
+	//Go through the linked list
+	while (currentPtr != NULL)
+	{
+
+		//Read in from text file
+		while (fscanf(fp, "%d %s %s %s %d %d %d %lf %s", &currentPtr->id, currentPtr->name, currentPtr->address, currentPtr->department, &currentPtr->employeeDate.day, &currentPtr->employeeDate.month, &currentPtr->employeeDate.year, &currentPtr->annualSalary, currentPtr->email != EOF))
+		{
+			
+		}//End while
+
+		currentPtr = currentPtr->nextPtr;
+
+	}//End while
+
+*/
+}//End populateLinkedList()

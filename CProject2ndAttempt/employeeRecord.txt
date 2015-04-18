@@ -1,1 +1,8 @@
+		Employee Report
+		***************
+
 Number of employees: 1
+Total salary: 150000.00
+Total bonus: 7500.00
+Total cost: 157500.00
+

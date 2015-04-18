@@ -66,5 +66,7 @@ void employeeReport(struct employee *headPtr, char departmentName[]);
 
 double bonusCalculater(int year, double salary);
 
+void populateLinkedList(struct employee *currentPtr);
+
 
 
