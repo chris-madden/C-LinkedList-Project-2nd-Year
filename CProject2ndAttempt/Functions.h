@@ -68,5 +68,7 @@ double bonusCalculater(int year, double salary);
 
 void populateLinkedList(struct employee *currentPtr);
 
+void printEmployeesDatabase(struct employee *currentPtr);
+
 
 
