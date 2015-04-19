@@ -12,6 +12,8 @@
 ------------------------4. Display all employees function done, is case sensitive at the moment-----------------------------------
 
 ------------------------5. Employee report is finished, need to write out to files though-----------------------------------------
+
+------------------------6. Employee database built into file now, need to print data from addEmployee() to file-------------------
 */
 
 #ifdef _MSC_VER
@@ -34,7 +36,7 @@ void main()
 	int tempNumber, validationNum, correctUserCoice, updateId;
 	char departmentName[15];
 
-	populateLinkedList(headPtr);
+	populateLinkedList(&headPtr);
 
 	//Will keep giving you menu options until 0 is entered
 	do
@@ -809,7 +811,7 @@ double bonusCalculater(int year, double salary)
 }//End bonusCalculater
 
 
-void populateLinkedList(struct employee *headPtr)
+void populateLinkedList(struct employee **headPtr)
 {
 
 	//Create file pointer
@@ -823,72 +825,103 @@ void populateLinkedList(struct employee *headPtr)
 
 	struct employee *currentPtr;//Points to current node in the list
 
-	//Employee ID
-	int id;
-
-	//String that can hold name
-	char name[30];
-
-	//String to accept address
-	char address[50];
-
-	//String for department - may change to int later on
-	char department[15];
-
-	//Date is held in a struct
-	struct date employeeDate;
-
-	//Double for the money employee makes in year
-	double annualSalary;
-
-	//Don't know what email will be in the future so leaving it as a string
-	char email[40];
-
 	//Create and open txt file
 	if ((fp = fopen("Database.txt", "r")) == NULL)
 	{
 
 		printf("File could not be opened\n");
 
-	}
-	else
-	{
+	}	
 
-		fscanf(fp, "%d%s%s%s%lf%s", &id, name, address, department, &annualSalary, email);
+		newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
 
-	}
+		//Scan in data from file
+		fscanf(fp, "%d%s%s%s%d%d%d%lf%s", &newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, &newNodePtr->employeeDate.day, &newNodePtr->employeeDate.month, &newNodePtr->employeeDate.year, &newNodePtr->annualSalary, newNodePtr->email);
 
+		//printf("%d %s %s %s %d %d %d %.2lf %s\n\n", newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, newNodePtr->employeeDate.day, newNodePtr->employeeDate.month, newNodePtr->employeeDate.year, newNodePtr->annualSalary, newNodePtr->email);
 
-	printf("%d %s %s %s %.2lf %s\n\n", id, name, address, department, annualSalary, email);
-
-
-	//Run until it's not end of file
-	while (!feof(fp))
-	{
-		
-		fscanf(fp, "%d%s%s%s%lf%s", &id, name, address, department, &annualSalary, email);
-
-		printf("%d %s %s %s %.2lf %s\n\n", id, name, address, department, annualSalary, email);
-		
-	}//End while
-	
-
-	fclose(fp);
-
-/*
-	//Go through the linked list
-	while (currentPtr != NULL)
-	{
-
-		//Read in from text file
-		while (fscanf(fp, "%d %s %s %s %d %d %d %lf %s", &currentPtr->id, currentPtr->name, currentPtr->address, currentPtr->department, &currentPtr->employeeDate.day, &currentPtr->employeeDate.month, &currentPtr->employeeDate.year, &currentPtr->annualSalary, currentPtr->email != EOF))
+		//Run until it's not end of file
+		while (!feof(fp))
 		{
+
+			newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
+
+			previousPtr = NULL;//previousPtr doesn't point to anything
+
+			currentPtr = *headPtr;//currentPtr ponits to begining of list
 			
+
+			//First time around currentPtr will be NULL
+			while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
+			{
+
+				previousPtr = currentPtr;//Assign currentPtr to previousPtr
+
+				currentPtr = currentPtr->nextPtr;//Assign next pointer to currentPtr
+
+			}//End while
+
+			//If there is no linked list already
+			if (previousPtr == NULL)
+			{
+
+				newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
+
+				*headPtr = newNodePtr;//headPtr points to newNodePtr
+
+			}//End nested if
+			else//Put newNodePtr in correct position
+			{
+				previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
+
+				newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
+			}
+
+			
+			newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
+		
+			//Scan in data from file
+			fscanf(fp, "%d%s%s%s%d%d%d%lf%s", &newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, &newNodePtr->employeeDate.day, &newNodePtr->employeeDate.month, &newNodePtr->employeeDate.year, &newNodePtr->annualSalary, newNodePtr->email);
+
+			//printf("%d %s %s %s %d %d %d %.2lf %s\n\n", newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, newNodePtr->employeeDate.day, newNodePtr->employeeDate.month, newNodePtr->employeeDate.year, newNodePtr->annualSalary, newNodePtr->email);
+			
+
 		}//End while
 
-		currentPtr = currentPtr->nextPtr;
+		//Repeat so last entry is entered into linked list
 
-	}//End while
+		newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
 
-*/
+		previousPtr = NULL;//previousPtr doesn't point to anything
+
+		currentPtr = *headPtr;//currentPtr ponits to begining of list
+
+		//First time around currentPtr will be NULL
+		while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
+		{
+
+			previousPtr = currentPtr;//Assign currentPtr to previousPtr
+
+			currentPtr = currentPtr->nextPtr;//Assign next pointer to currentPtr
+
+		}//End while
+
+		//If there is no linked list already
+		if (previousPtr == NULL)
+		{
+
+			newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
+
+			*headPtr = newNodePtr;//headPtr points to newNodePtr
+
+		}//End nested if
+		else//Put newNodePtr in correct position
+		{
+			previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
+
+			newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
+		}
+
+	fclose(fp);//Close file
+
 }//End populateLinkedList()

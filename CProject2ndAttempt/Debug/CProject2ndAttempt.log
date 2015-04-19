@@ -1,8 +1,10 @@
-﻿Build started 18/04/2015 15:22:31.
+﻿Build started 19/04/2015 11:09:16.
      1>Project "C:\Users\User\Desktop\CProject2ndAttempt\CProject2ndAttempt\CProject2ndAttempt.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt CProject2ndAttempt.c
          CProject2ndAttempt.c
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(37): warning C4047: 'function' : 'employee *' differs in levels of indirection from 'employee **'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(37): warning C4024: 'populateLinkedList' : different types for formal and actual parameter 1
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(61): warning C4047: 'function' : 'employee **' differs in levels of indirection from 'employee *'
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(61): warning C4024: 'uniqueIDSearch' : different types for formal and actual parameter 1
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(74): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
@@ -16,10 +18,7 @@
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(565): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(595): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
      1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(676): warning C4013: 'strcmp' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(824): warning C4101: 'currentPtr' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(820): warning C4101: 'newNodePtr' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(839): warning C4101: 'employeeDate' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(822): warning C4101: 'previousPtr' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(813): warning C4028: formal parameter 1 different from declaration
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.lib" /MACHINE:X86 Debug\CProject2ndAttempt.obj
          CProject2ndAttempt.vcxproj -> C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe
