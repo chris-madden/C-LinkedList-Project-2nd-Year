@@ -70,5 +70,7 @@ void populateLinkedList(struct employee *currentPtr);
 
 void printEmployeesDatabase(struct employee *currentPtr);
 
+int stringValidation(char * name);
+
 
 

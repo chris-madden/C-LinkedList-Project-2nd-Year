@@ -5,7 +5,7 @@
 
 ------------------------1. When wrong details enterd in addEmployee it still saves in a list and needs to be deleted--------------
 
-------------------------2. A lot of validation needed in addEmployee--------------------------------------------------------------
+------------------------2. Validations done for strings and date, salary and email left-------------------------------------------
 
 ------------------------3. Update Employees section done but no validation on new data entered------------------------------------
 
@@ -29,8 +29,6 @@ void main()
 {
 
 	//Struct pointer of type employee
-	//Initially there aren't any nodes
-	//Points to start of the list
 	struct employee *headPtr = NULL;
 	int tempNumber, validationNum, correctUserCoice, updateId;
 	char departmentName[15];
@@ -41,10 +39,12 @@ void main()
 	do
 	{
 
+		//Brings up menu
 		menu();
 
 		if (userChoice >= 0 && userChoice <= 6)
 		{
+
 			//Switch statment to direct user to their choice
 			switch (userChoice)
 			{
@@ -154,7 +154,9 @@ void main()
 		else
 		{
 
-			printf("\nInvalid number entered\n\n");
+			printf("\n==========================\n");
+			printf("\n**Invalid number entered**\n");
+			printf("\n==========================\n\n");
 
 		}
 
@@ -197,9 +199,14 @@ void addEmployee(struct employee **headPtr, int validationNum)
 
 	int dayChecker, monthChecker, yearChecker;//Variables for day and month validation
 
+	int validation;
+
 	double salary;
 
 	char email[40];
+
+	//Used for validation
+	char name[30];
 
 	newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
 
@@ -208,41 +215,119 @@ void addEmployee(struct employee **headPtr, int validationNum)
 			
 			newNodePtr->id = validationNum;//Assign unique user entered number to id of newNodePtr
 
+//*******************************************Take in and validate NAME*********************************************************************************
+
 			//Prompt user for details
 			printf("Enter your name\n");
-			scanf("%s", newNodePtr->name);
+			scanf("%s", name);
+			validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
 
-			printf("Enter your address\n");
-			scanf("%s", newNodePtr->address);
+			//Keep running until valid name is entered
+			while(validation == 0)
+			{
+
+				printf("Name invalid - Only characters a to z accepted\n");
+				printf("Enter your name\n");
+				scanf("%s", name);
+				validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
+			}//End while
+
+			//If anme is valid
+			if (validation == 1)
+			{
+				//Copy valid name into node
+				strcpy(newNodePtr->name, name);
+
+			}//End if
+
+//*******************************************Take in and validate ADDRESS*********************************************************************************
+
+			printf("Enter your address - County only\n");
+			scanf("%s", name);
+			validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
+
+			//Keep running until valid name is entered
+			while (validation == 0)
+			{
+
+				printf("Name invalid - Only characters a to z accepted\n");
+				printf("Enter your county\n");
+				scanf("%s", name);
+				validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
+			}//End while
+
+			//If anme is valid
+			if (validation == 1)
+			{
+				//Copy valid name into node
+				strcpy(newNodePtr->address, name);
+
+			}//End if
+
+//*******************************************Take in and validate DEPARTMENT*********************************************************************************
 
 			printf("Enter your department\n");
-			scanf("%s", newNodePtr->department);
+			scanf("%s", name);
+			validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
 
-//===========================DATE VALIDATION NOT WORKING PROPERLY================================================
-			//Will check a correct day was entered
+			//Keep running until valid name is entered
+			while (validation == 0)
+			{
+
+				printf("Name invalid - Only characters a to z accepted\n");
+				printf("Enter your department\n");
+				scanf("%s", name);
+				validation = stringValidation(strupr(name));//Put string to uppercase and check only letters are entered
+			}//End while
+
+			//If anme is valid
+			if (validation == 1)
+			{
+				//Copy valid name into node
+				strcpy(newNodePtr->department, name);
+
+			}//End if
+
+//*******************************************Take in and validate Date******************************************************************************************
+
+			///Date() returns null unless day is between 1 and 31
 			dayChecker = date();
 
-			//addEmployee function gets recalled
-			if (dayChecker == NULL)
+			//Runs until correct day is entered	
+			while(dayChecker == NULL)
 			{
 				
 				printf("Invalid date\nMust be from 1 to 31\n\n");
-				//dayChecker = date();
+				dayChecker = date();
 
-			}
-			else if (dayChecker <= 29)
+			}//End while
+
+			if (dayChecker <= 29)
 			{
 
-				newNodePtr->employeeDate.day = dayChecker;
+				newNodePtr->employeeDate.day = dayChecker;//Store day number in linked list
 
+//*******************************************Take in and validate MONTH*********************************************************************************
+				//Prompt user
 				printf("Select your month\n");
 				printf("1: Jan\n2: Feb\n3: Mar\n4: April\n5: May\n6: June\n7: July\n8: Aug\n9: Sep\n10: Oct\n11: Nov\n12: Dec\n");
 				scanf("%d", &monthChecker);
 
+				//Run until correct month is entered
+				while (monthChecker < 1 || monthChecker > 12)
+				{
+
+					printf("Invalid month - Choose again\n");
+					printf("1: Jan\n2: Feb\n3: Mar\n4: April\n5: May\n6: June\n7: July\n8: Aug\n9: Sep\n10: Oct\n11: Nov\n12: Dec\n");
+					scanf("%d", &monthChecker);
+
+				}//End while
+
+				//Store correct number in linked list
 				switch (monthChecker)
 				{
 
-				case 1: 
+				case 1:
 					newNodePtr->employeeDate.month = 1;
 					break;
 				case 2:
@@ -283,7 +368,7 @@ void addEmployee(struct employee **headPtr, int validationNum)
 					break;
 				}//End switch
 
-			}
+			}//End if
 			else if (dayChecker == 30)
 			{
 
@@ -292,6 +377,16 @@ void addEmployee(struct employee **headPtr, int validationNum)
 				printf("Select your month\n");
 				printf("1: Jan\n2: Mar\n3: April\n4: May\n5: June\n6: July\n7: Aug\n8: Sep\n9: Oct\n10: Nov\n11: Dec");
 				scanf("%d", &monthChecker);
+
+				//Run until correct month is entered
+				while (monthChecker < 1 || monthChecker > 11)
+				{
+
+					printf("Invalid month - Choose again\n");
+					printf("1: Jan\n2: Mar\n3: April\n4: May\n5: June\n6: July\n7: Aug\n8: Sep\n9: Oct\n10: Nov\n11: Dec\n");
+					scanf("%d", &monthChecker);
+
+				}//End while
 
 				switch (monthChecker)
 				{
@@ -344,6 +439,16 @@ void addEmployee(struct employee **headPtr, int validationNum)
 				printf("1: Jan\n2: Mar\n3: May\n4: July\n5: Aug\n6: Oct\n7: Dec");
 				scanf("%d", &monthChecker);
 
+				//Run until correct month is entered
+				while (monthChecker < 1 || monthChecker > 7)
+				{
+
+					printf("Invalid month - Choose again\n");
+					printf("1: Jan\n2: Mar\n3: May\n4: July\n5: Aug\n6: Oct\n7: Dec");
+					scanf("%d", &monthChecker);
+
+				}//End while
+
 				switch (monthChecker)
 				{
 
@@ -374,9 +479,20 @@ void addEmployee(struct employee **headPtr, int validationNum)
 				}//End switch
 
 			}//End else
+
+//*******************************************Take in and validate YEAR*********************************************************************************
 			
 			printf("Enter year in format yyyy\n");
 			scanf("%d", &yearChecker);
+
+			while (yearChecker < 1900 || yearChecker > 2015)
+			{
+
+				printf("Invalid year - Choose again\n");
+				printf("Enter year in format yyyy\n");
+				scanf("%d", &yearChecker);
+
+			}//End while
 
 			if (yearChecker >= 1900 && yearChecker <= 2015)
 			{
@@ -390,7 +506,7 @@ void addEmployee(struct employee **headPtr, int validationNum)
 				printf("Invalid date\nMust be from 1900 to 2015\n");
 
 			}
-//=============================================================================================================
+//===========================================salary needs to be validated==================================================================
 
 			printf("Enter salary\n");
 			scanf("%lf", &salary);
@@ -915,94 +1031,34 @@ void printEmployeesDatabase(struct employee *currentPtr)
 }//End printEmployeesDatabase
 
 
-
-
-
-
-
-/*
-
-//Run until it's end of file
-//!feof(fp)
-while (fscanf(fp, "%d%s%s%s%d%d%d%lf%s", &newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, &newNodePtr->employeeDate.day, &newNodePtr->employeeDate.month, &newNodePtr->employeeDate.year, &newNodePtr->annualSalary, newNodePtr->email) == 9)
+int stringValidation(char * name)
 {
 
-newNodePtr = (struct employee*)malloc(sizeof(struct employee));//Creates a new node
+	int i;
 
-fscanf(fp, "%d%s%s%s%d%d%d%lf%s", &newNodePtr->id, newNodePtr->name, newNodePtr->address, newNodePtr->department, &newNodePtr->employeeDate.day, &newNodePtr->employeeDate.month, &newNodePtr->employeeDate.year, &newNodePtr->annualSalary, newNodePtr->email);
+	printf("%d\n\n", strlen(name));
+
+	for (i = 0; i < strlen(name); i++)
+	{
+
+		printf("%c  = %d\n", name[i], i);
+
+	}
 
 
-newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
+	for (i = 0; i < strlen(name); i++)
+	{
 
-previousPtr = NULL;//previousPtr doesn't point to anything
+		while(name[i] < (char)65 || name[i] > (char)90)
+		{
 
-currentPtr = *headPtr;//currentPtr ponits to begining of list
+			//Return if string is invalid
+			return 0;
 
+		}
 
-//First time around currentPtr will be NULL
-while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
-{
+	}//End for
 
-previousPtr = currentPtr;//Assign currentPtr to previousPtr
+	return 1;
 
-currentPtr = currentPtr->nextPtr;//Assign next pointer to currentPtr
-
-}//End while
-
-//If there is no linked list already
-if (previousPtr == NULL)
-{
-
-newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
-
-*headPtr = newNodePtr;//headPtr points to newNodePtr
-
-}//End nested if
-else//Put newNodePtr in correct position
-{
-previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
-
-newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
-}//End else
-
-}//End while
-
-*/
-
-/*
-
-//Repeat so last entry is entered into linked list
-
-newNodePtr->nextPtr = NULL;//This node is last in list, currently doesn't link to another node
-
-previousPtr = NULL;//previousPtr doesn't point to anything
-
-currentPtr = *headPtr;//currentPtr points to begining of list
-
-//First time around currentPtr will be NULL
-while (currentPtr != NULL && newNodePtr->id > currentPtr->id)
-{
-
-previousPtr = currentPtr;//Assign currentPtr to previousPtr
-
-currentPtr = currentPtr->nextPtr;//Assign next pointer to currentPtr
-
-}//End while
-
-//If there is no linked list already
-if (previousPtr == NULL)
-{
-
-newNodePtr->nextPtr = *headPtr;//newNodePtr's nextPtr points to head(start of the linked list)
-
-*headPtr = newNodePtr;//headPtr points to newNodePtr
-
-}//End nested if
-else//Put newNodePtr in correct position
-{
-previousPtr->nextPtr = newNodePtr;//previousPtr nextPtr points to newNodePtr
-
-newNodePtr->nextPtr = currentPtr;//Point newNodePtr to currentPointer
-}
-
-*/
+}//End nameValidation
