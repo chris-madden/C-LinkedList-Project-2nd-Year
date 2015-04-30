@@ -34,8 +34,6 @@ struct employee
 	//Don't know what email will be in the future so leaving it as a string
 	char email[40];
 
-	int found;
-
 	//Create struct pointer
 	struct employee *nextPtr;
 

@@ -1,49 +1,47 @@
-﻿Build started 30/04/2015 13:06:30.
+﻿Build started 30/04/2015 20:11:54.
      1>Project "C:\Users\User\Desktop\CProject2ndAttempt\CProject2ndAttempt\CProject2ndAttempt.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt CProject2ndAttempt.c
          CProject2ndAttempt.c
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(36): warning C4047: 'function' : 'employee *' differs in levels of indirection from 'employee **'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(36): warning C4024: 'populateLinkedList' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(62): warning C4047: 'function' : 'employee **' differs in levels of indirection from 'employee *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(62): warning C4024: 'uniqueIDSearch' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(75): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(79): warning C4020: 'addEmployee' : too many actual parameters
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(112): warning C4020: 'displayEmployeesID' : too many actual parameters
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(133): warning C4013: 'strupr' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(133): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(133): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(195): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(195): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(275): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(275): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(32): warning C4101: 'correctUserCoice' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(360): warning C4029: declared formal parameter list different from definition
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(391): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(391): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(400): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(400): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(407): warning C4013: 'strcpy' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(415): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(415): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(424): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(424): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(439): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(439): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(448): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(448): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(462): warning C4013: 'date' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(465): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(374): warning C4101: 'email' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(740): warning C4029: declared formal parameter list different from definition
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(793): warning C4013: 'strcmp' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(924): warning C4028: formal parameter 1 different from declaration
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(932): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(963): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1249): warning C4028: formal parameter 1 different from declaration
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1358): warning C4013: 'strlen' undefined; assuming extern returning int
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1380): warning C4101: 'department' : unreferenced local variable
-     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1383): warning C4101: 'flagArray' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(22): warning C4047: 'function' : 'employee *' differs in levels of indirection from 'employee **'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(22): warning C4024: 'populateLinkedList' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(48): warning C4047: 'function' : 'employee **' differs in levels of indirection from 'employee *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(48): warning C4024: 'uniqueIDSearch' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(61): warning C4047: '!=' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(65): warning C4020: 'addEmployee' : too many actual parameters
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(98): warning C4020: 'displayEmployeesID' : too many actual parameters
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(119): warning C4013: 'strupr' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(119): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(119): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(181): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(181): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(261): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(261): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(18): warning C4101: 'correctUserCoice' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(348): warning C4029: declared formal parameter list different from definition
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(379): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(379): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(388): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(388): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(395): warning C4013: 'strcpy' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(403): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(403): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(412): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(412): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(427): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(427): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(436): warning C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(436): warning C4024: 'stringValidation' : different types for formal and actual parameter 1
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(450): warning C4013: 'date' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(453): warning C4047: '==' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(362): warning C4101: 'email' : unreferenced local variable
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(728): warning C4029: declared formal parameter list different from definition
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(781): warning C4013: 'strcmp' undefined; assuming extern returning int
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(912): warning C4028: formal parameter 1 different from declaration
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(920): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(951): warning C4047: 'return' : 'int' differs in levels of indirection from 'void *'
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1214): warning C4028: formal parameter 1 different from declaration
+     1>c:\users\user\desktop\cproject2ndattempt\cproject2ndattempt\cproject2ndattempt.c(1319): warning C4013: 'strlen' undefined; assuming extern returning int
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.lib" /MACHINE:X86 Debug\CProject2ndAttempt.obj
          CProject2ndAttempt.vcxproj -> C:\Users\User\Desktop\CProject2ndAttempt\Debug\CProject2ndAttempt.exe
@@ -51,4 +49,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.84
+Time Elapsed 00:00:02.13

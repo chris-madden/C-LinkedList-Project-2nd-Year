@@ -1,8 +1,10 @@
 Employee Report
 ***************
 
-Number of employees: 4
-Total salary: 185451.00
-Total bonus: 9272.55
-Total cost: 194723.55
+BUSINESS Department
+
+Number of employees: 2
+Total salary: 32000.00
+Total bonus: 1600.00
+Total cost: 33600.00
 
