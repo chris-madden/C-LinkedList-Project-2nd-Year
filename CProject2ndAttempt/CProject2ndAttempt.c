@@ -49,8 +49,8 @@ void main()
 			switch (userChoice)
 			{
 
+			//=======================CASE 1 ADD EMPLOYEE=========================================
 			case 1:
-				//printf("Insert Add employee function ");
 				printf("Enter your id number\nMust be between 1 and 10,000\n\n");
 				scanf("%d", &tempNumber);
 
@@ -81,11 +81,69 @@ void main()
 				}//End if
 				break;
 
+			//=======================CASE 2 DISPLAY EMPLOYEE=========================================
 			case 2:
-				//printf("Insert Display employee details function ");
-				displayEmployees(headPtr);
+				//prompt user
+				printf("Do you want to search for employee by name or ID\n1.ID\n2.Name\n\n");
+				scanf("%d", &updateChoice);
+
+				//If invalid number is entered repeat question
+				while (updateChoice < 1 && updateChoice > 2)
+				{
+					printf("Invalid number\n");
+
+					printf("Do you want to search by name or ID\n1.ID\n2.Name\n\n");
+					scanf("%d", &updateChoice);
+
+				}//End while
+
+				//If 1 is entered
+				if (updateChoice == 1)
+				{
+
+					//Ask user for ID
+					printf("\nEnter ID to you want to display\n");
+					scanf("%d", &updateId);
+
+					if (updateId >= 0 && updateId <= 10000)
+					{
+
+						//Pass in headPtr and ID to be updated
+						displayEmployeesID(headPtr, updateId);
+
+					}
+					else
+					{
+
+						//Error Message
+						printf("Incorrect ID start again\n\n");
+						break;
+
+					}//End else
+					
+				}//End if 
+				else if (updateChoice == 2)//If 2 is entered
+				{
+
+					//Prompt user for name
+					printf("\nEnter Name to you want to display\n");
+					scanf("%s", updateNameChoice);
+
+					//Check a string with only letters was entered
+					validateString = stringValidation(strupr(updateNameChoice));
+
+					if (validateString == 1)
+					{
+
+						//Pass in headPtr and name
+						displayEmployeesName(headPtr, updateNameChoice);
+
+					}//End nested if
+
+				}//End else if
 				break;
 
+			//=======================CASE 3 UPDATE EMPLOYEE=========================================
 			case 3:
 				//Prompt user for update choice
 				printf("Do you want to search by name or ID\n1.ID\n2.Name\n\n");
@@ -109,6 +167,7 @@ void main()
 					printf("\nEnter ID to you want to update\n");
 					scanf("%d", &updateId);
 
+					//Check ID is within limits of database
 					if (updateId >= 0 && updateId <= 10000)
 					{
 
@@ -155,8 +214,8 @@ void main()
 				}
 				break;
 
+			//=======================CASE 4 DELETE EMPLOYEE=========================================
 			case 4:
-				//printf("Insert Delete employee function ");
 				//Check if list is empty and print out error message
 				if (headPtr == NULL)
 				{
@@ -166,13 +225,76 @@ void main()
 				}
 				else//Enter ID number to delete and search for it
 				{
-					printf("Enter ID to you want to delete\n");
-					scanf("%d", &deleteNumber);
+					//Prompt user for update choice
+					printf("Do you want to delete by name or ID\n1.ID\n2.Name\n\n");
+					scanf("%d", &updateChoice);
 
-					deleteEmployee(&headPtr, deleteNumber);
-				}	
+					//If invalid number is entered repeat question
+					while (updateChoice < 1 && updateChoice > 2)
+					{
+						printf("Invalid number\n");
+
+						printf("Do you want to delete by name or ID\n1.ID\n2.Name\n\n");
+						scanf("%d", &updateChoice);
+
+					}//End while
+
+					//If 1 is entered
+					if (updateChoice == 1)
+					{
+
+						//Ask user for ID
+						printf("\nEnter ID to you want to delete\n");
+						scanf("%d", &updateId);
+
+						if (updateId >= 0 && updateId <= 10000)
+						{
+
+							//need delete employees function
+							deleteEmployeeID(&headPtr, updateId);
+
+						}
+						else
+						{
+
+							//Error Message
+							printf("Incorrect ID start again\n\n");
+							break;
+
+						}//End else
+
+					}//End if 
+					else if (updateChoice == 2)//If 2 is entered
+					{
+
+						//Prompt user for name
+						printf("\nEnter Name to you want to delete by\n");
+						scanf("%s", updateNameChoice);
+
+						//Check a string with only letters was entered
+						validateString = stringValidation(strupr(updateNameChoice));
+
+						if (validateString == 1)
+						{
+							
+							//Pass in headPtr and name
+							deleteEmployeeName(&headPtr, updateNameChoice);
+
+						}
+						else
+						{
+
+							printf("Incorrect ID start again\n\n");
+							break;
+
+						}//End second nested else
+
+					}//End first nested else
+					
+				}//End else
 				break;
 
+			//=======================CASE 5 DISPLAY BY DEPARTMENT====================================
 			case 5:
 				//printf("Insert Display all employees by department function ");
 				//printf("Enter department\n");
@@ -182,6 +304,7 @@ void main()
 				searchDepartmentNew(headPtr, headPtr, headPtr);
 				break;
 
+			//=======================CASE 6 EMPLOYEE REPORT=========================================
 			case 6:
 				//printf("Insert Display employee report function ");
 				printf("Enter department\n");
@@ -612,7 +735,8 @@ void addEmployee(struct employee **headPtr, int validationNum)
 
 }//End addEmloyees
 
-void displayEmployees(struct employee *currentPtr)
+//Displays employe by ID
+void displayEmployeesID(struct employee *currentPtr, int searchNumber)
 {
 
 	if (currentPtr == NULL)
@@ -624,23 +748,24 @@ void displayEmployees(struct employee *currentPtr)
 	else
 	{
 
-		printf("Employee List\n");
-
 		while (currentPtr != NULL)
 		{
 
-			//Print employee details
-			printf("\nID: %d \n", currentPtr->id);
-			printf("Name: %s \n", currentPtr->name);
-			printf("Address: %s\n", currentPtr->address);
-			printf("Department: %s\n", currentPtr->department);
-			printf("Day: %d\n", currentPtr->employeeDate.day);
-			printf("Month: %d\n", currentPtr->employeeDate.month);
-			printf("Year: %d\n", currentPtr->employeeDate.year);
-			printf("Annual Salary: %.2lf\n", currentPtr->annualSalary);//Prints to 2 decimal places
-			printf("Email: %s\n", currentPtr->email);
+			if (searchNumber == currentPtr->id)
+			{
 
-			printf("\n\n");
+				printf("\nEmployee\n========");
+
+				//Print employee details
+				printf("\nID: %d \n", currentPtr->id);
+				printf("Name: %s \n", currentPtr->name);
+				printf("Address: %s\n", currentPtr->address);
+				printf("Department: %s\n", currentPtr->department);
+				printf("Start date: %d/%d/%d\n", currentPtr->employeeDate.day, currentPtr->employeeDate.month, currentPtr->employeeDate.year);
+				printf("Annual Salary: %.2lf\n", currentPtr->annualSalary);//Prints to 2 decimal places
+				printf("Email: %s\n", currentPtr->email);
+
+			}//End if
 
 			currentPtr = currentPtr->nextPtr;
 
@@ -650,8 +775,47 @@ void displayEmployees(struct employee *currentPtr)
 
 }//End displayEmployee
 
+//Displays employe by Name
+void displayEmployeesName(struct employee *currentPtr, char * name){
+
+	if (currentPtr == NULL)
+	{
+
+		printf("There are no employees\n\n");
+
+	}
+	else
+	{
+
+		while (currentPtr != NULL)
+		{
+
+			if (strcmp(name, currentPtr->name) == 0)
+			{
+
+				printf("\nEmployee\n========");
+
+				//Print employee details
+				printf("\nID: %d \n", currentPtr->id);
+				printf("Name: %s \n", currentPtr->name);
+				printf("Address: %s\n", currentPtr->address);
+				printf("Department: %s\n", currentPtr->department);
+				printf("Start date: %d/%d/%d\n", currentPtr->employeeDate.day, currentPtr->employeeDate.month, currentPtr->employeeDate.year);
+				printf("Annual Salary: %.2lf\n", currentPtr->annualSalary);//Prints to 2 decimal places
+				printf("Email: %s\n", currentPtr->email);
+
+			}//End if
+
+			currentPtr = currentPtr->nextPtr;
+
+		}//End while
+
+	}//End else
+
+}//End displayEmployeesName
+
 //Pass in address of headPtr and ID number of employee to delete
-void deleteEmployee(struct employee **headPtr, int deleteNumber)
+void deleteEmployeeID(struct employee **headPtr, int deleteNumber)
 {
 
 	struct employee *previousPtr = NULL;//Points to previous node in the list
@@ -701,18 +865,58 @@ void deleteEmployee(struct employee **headPtr, int deleteNumber)
 
 	}//End if
 
-//----------------Error message was printing all the time even though delete function was working fine----------------------------------------------------------
+}//End deleteEmployee
 
-	/*
-	else//(currentPtr == NULL)//Print error message if ID can't be found
+void deleteEmployeeName(struct employee **headPtr, char * name)
+{
+
+	struct employee *previousPtr = NULL;//Points to previous node in the list
+
+	struct employee *currentPtr = NULL;//Points to current node in the list
+
+	struct employee *tempPtr;//Points to a temporary pointer 
+
+	//Check if name is equal to name in headPtr
+	if (strcmp(name, (*headPtr)->name) == 0)
 	{
 
-		printf("ID number is not in the list\n\n");
+		tempPtr = *headPtr;//store headPtr node in tempPtr node
+
+		*headPtr = (*headPtr)->nextPtr;//headPtr will point to second node in the list
+
+		free(tempPtr);//Free up this memory (delete node)
 
 	}
-	*/
+	else
+	{
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+		previousPtr = *headPtr;//prevoiusPtr stores address to headPtr
+
+		currentPtr = (*headPtr)->nextPtr;//CurrentPtr stores address of nextPtr
+	}
+
+	//Loop through nodes to find correct id number
+	while (currentPtr != NULL && strcmp(name, currentPtr->name) != 0)
+	{
+
+		previousPtr = currentPtr;//currentPtr is asssigned to previousPtr as currentPtr did not have correct value
+
+		currentPtr = currentPtr->nextPtr;//Moves currentPtr on to next node
+
+	}//End while
+
+	//Found node and delete it
+	if (currentPtr != NULL)
+	{
+
+		tempPtr = currentPtr;//Assign current to the tempPtr node
+
+		previousPtr->nextPtr = currentPtr->nextPtr;//Assigning currentPtr's nextPtr to previousPtr's nextPtr links the list together after deleting node at currentPtr
+
+		free(tempPtr);//Free up this memory (delete node)
+
+	}//End if
+
 }//End deleteEmployee
 
 //Pass in headPtr as it's the start of the list
@@ -737,6 +941,7 @@ int uniqueIDSearch(struct employee *headPtr, int searchNumber)
 
 }//End uniqueIDSearch
 
+//Returns a day E.G 1 -31
 int date()
 {
 
@@ -827,6 +1032,78 @@ void updateIdSearch(struct employee *headPtr, int searchNumber)
 
 
 }//End updateIdSearch
+
+//Search by name and update address, department or salary
+void updateNameSearch(struct employee *headPtr, char * name)
+{
+
+	int choice = 0;
+	char address[50];
+	char department[15];
+
+	//Loop if headPtr is not null
+	while (headPtr != NULL)
+	{
+		//Compare the user entered number with id's already in list
+		if (strcmp(name, headPtr->name) == 0)
+		{
+
+			//Prompt User
+			printf("What would you like to update\n\n");
+			printf("1.Address\n2.Department\n3.Salary\n\n");
+
+			scanf("%d", &choice);
+
+			//Check that option entered is valid
+			if (choice >= 1 && choice <= 3)
+			{
+				//Write correct option to it's place in linked list
+				//Address
+				if (choice == 1)
+				{
+
+					//Prompt user
+					printf("Enter new address\n");
+					scanf("%s", address);
+
+					//Put address to uppercase and copy to linked list
+					strcpy(headPtr->address, strupr(address));
+
+				}
+				else if (choice == 2)//Department
+				{
+
+					//Prompt user
+					printf("Enter new Department\n");
+					scanf("%s", department);
+
+					//Put address to uppercase and copy to linked list
+					strcpy(headPtr->department, strupr(department));
+
+				}
+				else if (choice == 3)//Salary
+				{
+					//Prompt user
+					printf("Enter new Salary\n");
+					scanf("%lf", &headPtr->annualSalary);
+
+				}//End else if  
+
+			}//End nested if
+			else
+			{
+				//Error message
+				printf("Invalid option\n\n");
+
+			}
+
+		}//End if
+
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+}//End updateNameSearch
 
 void searchDepartment(struct employee *headPtr, char departmentName[])
 {
@@ -1072,19 +1349,12 @@ void printEmployeesDatabase(struct employee *currentPtr)
 }//End printEmployeesDatabase
 
 //Checks for uppecase letters so strupr mus be used on string thats passed in to this method
+//Returns 1 for valid string and 0 for invalid
 int stringValidation(char * name)
 {
 
 	int i;
-
-	for (i = 0; i < strlen(name); i++)
-	{
-
-		printf("%c  = %d\n", name[i], i);
-
-	}
-
-
+	
 	for (i = 0; i < strlen(name); i++)
 	{
 
@@ -1160,77 +1430,7 @@ void searchDepartmentNew(struct employee *headPtr, struct employee *comparePtr, 
 
 }//End searchDepartment
 
-//Search by name and update address, department or salary
-void updateNameSearch(struct employee *headPtr, char * name)
-{
 
-	int choice = 0;
-	char address[50];
-	char department[15];
-
-	//Loop if headPtr is not null
-	while (headPtr != NULL)
-	{
-		//Compare the user entered number with id's already in list
-		if (strcmp(name, headPtr->name) == 0)
-		{
-
-			//Prompt User
-			printf("What would you like to update\n\n");
-			printf("1.Address\n2.Department\n3.Salary\n\n");
-
-			scanf("%d", &choice);
-
-			//Check that option entered is valid
-			if (choice >= 1 && choice <= 3)
-			{
-				//Write correct option to it's place in linked list
-				//Address
-				if (choice == 1)
-				{
-
-					//Prompt user
-					printf("Enter new address\n");
-					scanf("%s", address);
-
-					//Put address to uppercase and copy to linked list
-					strcpy(headPtr->address, strupr(address));
-
-				}
-				else if (choice == 2)//Department
-				{
-
-					//Prompt user
-					printf("Enter new Department\n");
-					scanf("%s",department);
-
-					//Put address to uppercase and copy to linked list
-					strcpy(headPtr->department, strupr(department));
-
-				}
-				else if (choice == 3)//Salary
-				{
-					//Prompt user
-					printf("Enter new Salary\n");
-					scanf("%lf", &headPtr->annualSalary);
-
-				}//End else if  
-
-			}//End nested if
-			else
-			{
-				//Error message
-				printf("Invalid option\n\n");
-
-			}
-
-		}//End if
-		
-		headPtr = headPtr->nextPtr;//Move to next node
-
-	}//End while
-
-}//End updateNameSearch
 
 
 

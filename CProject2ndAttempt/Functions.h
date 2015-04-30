@@ -54,9 +54,11 @@ int userChoice, deleteNumber;
 //Prototypes
 void addEmployee(struct employee **headPtr);
 
-void displayEmployees(struct employee *currentPtr);
+void displayEmployeesID(struct employee *currentPtr);
 
-void deleteEmployee(struct employee **headPtr, int deleteNumber);
+void deleteEmployeeID(struct employee **headPtr, int deleteNumber);
+
+void deleteEmployeeName(struct employee **headPtr, char * name);
 
 int uniqueIDSearch(struct employee **headPtr, int searchNumber);
 
@@ -77,6 +79,8 @@ int stringValidation(char * name);
 void searchDepartmentNew(struct employee *headPtr, struct employee *comparePtr, struct employee *tempPtr);
 
 void updateNameSearch(struct employee *headPtr, char * name);
+
+void displayEmployeesName(struct employee *currentPtr, char * name);
 
 
 
