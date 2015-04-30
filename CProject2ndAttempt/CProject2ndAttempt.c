@@ -11,7 +11,7 @@
 
 ------------------------4. Display all employees function done, is case sensitive at the moment-----------------------------------
 
-------------------------5. Employee report is finished, need to write out to files though-----------------------------------------
+------------------------5. Employee report is finished, need to write out all departments though-----------------------------------------
 
 */
 
@@ -24,14 +24,14 @@
 #include <stdio.h>
 #include "Functions.h"
 
-
 void main()
 {
 
 	//Struct pointer of type employee
 	struct employee *headPtr = NULL;
-	int tempNumber, validationNum, correctUserCoice, updateId;
+	int tempNumber, validationNum, correctUserCoice, updateChoice = 0, updateId, validateString;
 	char departmentName[15];
+	char updateNameChoice[30];
 
 	populateLinkedList(&headPtr);
 
@@ -87,27 +87,72 @@ void main()
 				break;
 
 			case 3:
-				//printf("Insert Update employee function");
-				printf("Enter ID to you want to update\n");
-				scanf("%d", &updateId);
+				//Prompt user for update choice
+				printf("Do you want to search by name or ID\n1.ID\n2.Name\n\n");
+				scanf("%d", &updateChoice);
 
-				if (updateId >= 0 && updateId <= 10000)
+				//If invalid number is entered repeat question
+				while (updateChoice < 1 && updateChoice > 2)
+				{
+					printf("Invalid number\n");
+
+					printf("Do you want to search by name or ID\n1.ID\n2.Name\n\n");
+					scanf("%d", &updateChoice);
+
+				}//End while
+
+				//If 1 is entered
+				if (updateChoice == 1)
+				{
+					
+					//Ask user for ID
+					printf("\nEnter ID to you want to update\n");
+					scanf("%d", &updateId);
+
+					if (updateId >= 0 && updateId <= 10000)
+					{
+
+						updateIdSearch(headPtr, updateId);
+
+					}
+					else
+					{
+
+						//Error Message
+						printf("Incorrect ID start again\n\n");
+						break;
+
+					}//End else
+
+				}//End if 
+				else if (updateChoice == 2)//If 2 is entered
 				{
 
+					//Prompt user for name
+					printf("\nEnter Name to you want to update\n");
+					scanf("%s", updateNameChoice);
 
-					updateIdSearch(headPtr, updateId);
-					//Will check if number is unique or not
-					//validationNum = uniqueIDSearch(headPtr, tempNumber);
+					//Check a string with only letters was entered
+					validateString = stringValidation(strupr(updateNameChoice));
+
+					if (validateString == 1)
+					{
+						//String compare method here
+						printf("Put string compare method here\n\n");
+
+						//Pass in headPtr and name
+						updateNameSearch(headPtr, updateNameChoice);
+
+					}
+					else
+					{
+
+						printf("Incorrect ID start again\n\n");
+						break;
+
+					}
 
 				}
-				else
-				{
-
-					//Error Message
-					printf("Incorrect ID start again\n\n");
-					break;
-
-				}//End else
 				break;
 
 			case 4:
@@ -130,10 +175,11 @@ void main()
 
 			case 5:
 				//printf("Insert Display all employees by department function ");
-				printf("Enter department\n");
-				scanf("%s", departmentName);
+				//printf("Enter department\n");
+				//scanf("%s", departmentName);
 
-				searchDepartment(headPtr, departmentName);
+				//searchDepartment(headPtr, departmentName);
+				searchDepartmentNew(headPtr, headPtr, headPtr);
 				break;
 
 			case 6:
@@ -184,7 +230,6 @@ void menu()
 	scanf("%d", &userChoice);
 
 }//End menu function
-
 
 //Create pointer which points to address of headPtr
 //PASS IN TEMP_NUMBER
@@ -771,7 +816,7 @@ void updateIdSearch(struct employee *headPtr, int searchNumber)
 		else
 		{
 
-			printf("ID isn't in database\n\n");
+			printf("Looking for ID\n\n");
 
 		}//End else
 		
@@ -782,7 +827,6 @@ void updateIdSearch(struct employee *headPtr, int searchNumber)
 
 
 }//End updateIdSearch
-
 
 void searchDepartment(struct employee *headPtr, char departmentName[])
 {
@@ -803,8 +847,6 @@ void searchDepartment(struct employee *headPtr, char departmentName[])
 			printf("Year: %d\n", headPtr->employeeDate.year);
 			printf("Annual Salary: %.2lf\n", headPtr->annualSalary);//Prints to 2 decimal places
 			printf("Email: %s\n", headPtr->email);
-
-			
 
 		}//End if
 		else
@@ -926,7 +968,6 @@ double bonusCalculater(int year, double salary)
 
 }//End bonusCalculater
 
-
 void populateLinkedList(struct employee **headPtr)
 {
 
@@ -1030,13 +1071,11 @@ void printEmployeesDatabase(struct employee *currentPtr)
 
 }//End printEmployeesDatabase
 
-
+//Checks for uppecase letters so strupr mus be used on string thats passed in to this method
 int stringValidation(char * name)
 {
 
 	int i;
-
-	printf("%d\n\n", strlen(name));
 
 	for (i = 0; i < strlen(name); i++)
 	{
@@ -1062,3 +1101,198 @@ int stringValidation(char * name)
 	return 1;
 
 }//End nameValidation
+
+void searchDepartmentNew(struct employee *headPtr, struct employee *comparePtr, struct employee *tempPtr)
+{
+
+	//Use flags to keep track of which departments have already been looked at
+
+	char department[15];
+	char compareDepartment[15];
+	int flag = -1, i = -1;
+	int flagArray[10000];//Can hold 10000 records
+
+	strcpy(compareDepartment, comparePtr->department);
+
+	while (comparePtr != NULL)
+	{
+
+		comparePtr->found = 0;
+
+		printf("**%s**", comparePtr->department);
+		
+		if (comparePtr->found == 0)
+		{
+
+			headPtr = tempPtr;
+
+			while (headPtr != NULL)
+			{
+
+				if (strcmp(comparePtr->department, headPtr->department) == 0)
+				{
+
+					printf("\nID: %d \n", headPtr->id);
+					printf("Name: %s \n", headPtr->name);
+					printf("Address: %s\n", headPtr->address);
+					printf("Department: %s\n", headPtr->department);
+					printf("Day: %d\n", headPtr->employeeDate.day);
+					printf("Month: %d\n", headPtr->employeeDate.month);
+					printf("Year: %d\n", headPtr->employeeDate.year);
+					printf("Annual Salary: %.2lf\n", headPtr->annualSalary);//Prints to 2 decimal places
+					printf("Email: %s\n", headPtr->email);
+
+				}//End if
+
+				
+
+				headPtr = headPtr->nextPtr;
+
+			}//End while
+
+		}//End if
+
+		comparePtr->found = 1;
+		
+		comparePtr = comparePtr->nextPtr;		
+		
+	}//End while
+
+}//End searchDepartment
+
+//Search by name and update address, department or salary
+void updateNameSearch(struct employee *headPtr, char * name)
+{
+
+	int choice = 0;
+	char address[50];
+	char department[15];
+
+	//Loop if headPtr is not null
+	while (headPtr != NULL)
+	{
+		//Compare the user entered number with id's already in list
+		if (strcmp(name, headPtr->name) == 0)
+		{
+
+			//Prompt User
+			printf("What would you like to update\n\n");
+			printf("1.Address\n2.Department\n3.Salary\n\n");
+
+			scanf("%d", &choice);
+
+			//Check that option entered is valid
+			if (choice >= 1 && choice <= 3)
+			{
+				//Write correct option to it's place in linked list
+				//Address
+				if (choice == 1)
+				{
+
+					//Prompt user
+					printf("Enter new address\n");
+					scanf("%s", address);
+
+					//Put address to uppercase and copy to linked list
+					strcpy(headPtr->address, strupr(address));
+
+				}
+				else if (choice == 2)//Department
+				{
+
+					//Prompt user
+					printf("Enter new Department\n");
+					scanf("%s",department);
+
+					//Put address to uppercase and copy to linked list
+					strcpy(headPtr->department, strupr(department));
+
+				}
+				else if (choice == 3)//Salary
+				{
+					//Prompt user
+					printf("Enter new Salary\n");
+					scanf("%lf", &headPtr->annualSalary);
+
+				}//End else if  
+
+			}//End nested if
+			else
+			{
+				//Error message
+				printf("Invalid option\n\n");
+
+			}
+
+		}//End if
+		
+		headPtr = headPtr->nextPtr;//Move to next node
+
+	}//End while
+
+}//End updateNameSearch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+strcpy(compareDepartment, comparePtr->department);
+
+printf("\nCompare Departmant is %s", compareDepartment);
+
+printf("\n\n****Departmant is %s*****", department);
+
+if (strcmp(department, compareDepartment) == 0)
+{
+i++;
+printf("\n Department is %s %d\n", department, i);
+
+flag++;//Admin is equal to 0
+
+flagArray[i] = flag;
+
+headPtr = tempPtr;//Reset headPtr to start of linked list
+
+//Compares department with each node with same department and prints them out
+while (headPtr != NULL)
+{
+
+//Grouping departments together
+//department stored in headPtr->department is the same as the one stored in variable 'department'
+if (strcmp(department, headPtr->department) == 0)
+{
+//Print out deatils of this employee
+printf("\nID: %d \n", headPtr->id);
+printf("Name: %s \n", headPtr->name);
+printf("Address: %s\n", headPtr->address);
+printf("Department: %s\n", headPtr->department);
+printf("Day: %d\n", headPtr->employeeDate.day);
+printf("Month: %d\n", headPtr->employeeDate.month);
+printf("Year: %d\n", headPtr->employeeDate.year);
+printf("Annual Salary: %.2lf\n", headPtr->annualSalary);//Prints to 2 decimal places
+printf("Email: %s\n", headPtr->email);
+
+}//End if
+
+headPtr = headPtr->nextPtr;//Move to next node
+
+}//End while
+
+}//End if
+
+
+
+
+*/

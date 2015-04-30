@@ -34,6 +34,8 @@ struct employee
 	//Don't know what email will be in the future so leaving it as a string
 	char email[40];
 
+	int found;
+
 	//Create struct pointer
 	struct employee *nextPtr;
 
@@ -71,6 +73,10 @@ void populateLinkedList(struct employee *currentPtr);
 void printEmployeesDatabase(struct employee *currentPtr);
 
 int stringValidation(char * name);
+
+void searchDepartmentNew(struct employee *headPtr, struct employee *comparePtr, struct employee *tempPtr);
+
+void updateNameSearch(struct employee *headPtr, char * name);
 
 
 
